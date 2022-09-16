@@ -158,6 +158,10 @@ body{
 .upcoming-movie-list-title {
   padding-top: 10rem;
 }
+
+.watch-again-movie-list-title {
+  padding-top: 10rem;
+}
   
 .movie-list-wrapper {
     position: relative;
@@ -259,6 +263,14 @@ body{
   }
 
   .upcoming {
+    display: flex;
+    align-items: center;
+    height: 300px;
+    transform: translateX(0);
+    transition: all 1s ease-in-out;
+  }
+
+  .watch-again {
     display: flex;
     align-items: center;
     height: 300px;
