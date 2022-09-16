@@ -1,4 +1,4 @@
-//these are just drafts of code I want to keep
+//these are just drafts of code I don't want to delete yet
 
 function getUpcomingMovies() {
 
