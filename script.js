@@ -22,19 +22,6 @@ const ajax_params =
     {
         const movies =  response.items;
         movies.forEach(movie_render);
-
-        //tried to move thumbs up functionality up but it's not working
-        // const thumbsUp = document.querySelectorAll(".thumbs_up");
-        // let likeIcon = document.querySelectorAll(".icon"),
-        // count = document.querySelectorAll(".count");
-        
-        // let clicked = false;
-        // thumbsUp.addEventListener("click", () => {
-        // clicked = true;
-        // likeIcon.innerHTML = `<img src="img/BloodyKnifeUp.png"/>`;
-        // count.textContent++;
-        // console.log(count)
-// });
         return;
     
         function movie_render(movie)
@@ -55,7 +42,7 @@ const ajax_params =
             <span class="count">0</span>
             </button>
             <button class="thumbsDown">
-            <span class="dislikeIcon"><img src="img/BloodyKnifeDown.png"></i></span>
+            <span id="dislikeIcon" class="dislikeIcon"><img src="img/BloodyKnifeDown.png"></i></span>
             <span class="countDown">0</span>
             </button>
             </div>
@@ -170,19 +157,32 @@ const ajax_params =
     {
         const movies =  response.items;
         movies.forEach(movie_render);
-
-        //tried to move thumbs up functionality up but it's not working
-        // const thumbsUp = document.querySelectorAll(".thumbs_up");
-        // let likeIcon = document.querySelectorAll(".icon"),
-        // count = document.querySelectorAll(".count");
-        
-        // let clicked = false;
-        // thumbsUp.addEventListener("click", () => {
-        // clicked = true;
-        // likeIcon.innerHTML = `<img src="img/BloodyKnifeUp.png"/>`;
-        // count.textContent++;
-        // console.log(count)
-// });
+        //ThumbsDown not working inside of individual movie
+        // const ThumbsDown = {
+        //     state: {
+        //       count: 0,
+        //     },
+        //     template() {
+        //       return `
+        //       <span id="dislikeIcon"><img src="img/BloodyKnifeDown.png"></i></span>
+        //                 <span id="countDown">${this.state.count}</span>
+        //         `
+        //     },
+        //     initialize(){
+        //       document.getElementById("thumbsDown").innerHTML = this.template();
+        //       document.getElementById("dislikeIcon").addEventListener("click", () => ThumbsDown.increment());
+        //     },
+        //     increment() {
+        //       this.state.count++;
+        //       this.updateUI();
+        //     },
+        //     updateUI(){
+        //       document.getElementById('countDown').textContent = this.state.count;
+        //       console.log(this.state.count)
+        //     }
+        //   };
+        //   ThumbsDown.initialize();
+    
         return;
     
         function movie_render(movie)
@@ -220,37 +220,117 @@ const ajax_params =
 getWatchAgain();
 
 
+const ThumbsUp = {
+    state: {
+      count: 0,
+    },
+    template() {
+      return `
+      <span id="icon"><img src="img/BloodyKnifeUp.png"/></span>
+       <span id="counter">${this.state.count}</span>
+        `
+    },
+    initialize(){
+      document.getElementById('thumbsUp').innerHTML = this.template();
+      document.getElementById("icon").addEventListener("click", () => ThumbsUp.increment());
+    },
+    increment() {
+      this.state.count++;
+      this.updateUI();
+    },
+    updateUI(){
+      document.getElementById('counter').textContent = this.state.count;
+      console.log(this.state.count)
+    }
+  };
+  ThumbsUp.initialize();
+
+
+  const ThumbsDown = {
+    state: {
+      count: 0,
+    },
+    template() {
+      return `
+      <span id="dislikeIcon"><img src="img/BloodyKnifeDown.png"></i></span>
+                <span id="countDown">${this.state.count}</span>
+        `
+    },
+    initialize(){
+      document.getElementById("thumbsDown").innerHTML = this.template();
+      document.getElementById("dislikeIcon").addEventListener("click", () => ThumbsDown.increment());
+    },
+    increment() {
+      this.state.count++;
+      this.updateUI();
+    },
+    updateUI(){
+      document.getElementById('countDown').textContent = this.state.count;
+      console.log(this.state.count)
+    }
+  };
+  ThumbsDown.initialize();
+
 //THUMBS UP
 
-const thumbsUp = document.querySelector(".thumbs_up");
-let likeIcon = document.querySelector("#icon"),
-count = document.querySelector("#count");
+// const ThumbsUp = function _ThumbsUp() {
+//     `<span id="icon"><img src="img/BloodyKnifeUp.png"/></span>
+//     <span id="thumbsUp">${_ThumbsUp.state.count}</span>
+// `
+//   };
 
-let clicked = false;
+//   ThumbsUp.state = {
+//     count: 0,
+//     increment: () => {
+//       setState(() => ThumbsUp.state.count++);
+//       console.log(ThumbsUp.state)
+//     }
+//   };
+
+//   const setState = (callback) => {
+//     callback();
+//     updateTree(); // extracted function
+//   }
+
+//   const updateTree = () => {
+//     document.getElementById("thumbsUp").innerHTML = ThumbsUp();
+//     document
+//       .getElementById("icon")
+//       .addEventListener("click", ThumbsUp.state.increment);
+//   };
+
+//   updateTree();
+
+  
+// const thumbsUp = document.querySelector(".thumbs_up");
+// let likeIcon = document.querySelector("#icon"),
+// count = document.querySelector("#count");
+
+// let clicked = false;
 
 
-window.onload = thumbsUp.addEventListener("click", () => {
-    clicked = true;
-    likeIcon.innerHTML = `<img src="img/BloodyKnifeUp.png"/>`;
-    count.textContent++;
-    console.log(count)
-});
+// window.onload = thumbsUp.addEventListener("click", () => {
+//     clicked = true;
+//     likeIcon.innerHTML = `<img src="img/BloodyKnifeUp.png"/>`;
+//     count.textContent++;
+//     console.log(count)
+// });
 
 
 
 //THUMBS DOWN
 
-const thumbsDown = document.querySelector(".thumbsDown");
-let dislikeIcon = document.querySelector("#dislikeIcon"),
-  countDown = document.querySelector("#countDown");
-    let selected = false;
+// const thumbsDown = document.querySelector(".thumbsDown");
+// let dislikeIcon = document.querySelector("#dislikeIcon"),
+//   countDown = document.querySelector("#countDown");
+//     let selected = false;
 
-window.onload = thumbsDown.addEventListener("click", () => {
-    selected = true;
-    dislikeIcon.innerHTML = `<img src="img/BloodyKnifeDown.png"/>`;
-    countDown.textContent++;
-    console.log(countDown)
-});
+// window.onload = thumbsDown.addEventListener("click", () => {
+//     selected = true;
+//     dislikeIcon.innerHTML = `<img src="img/BloodyKnifeDown.png"/>`;
+//     countDown.textContent++;
+//     console.log(countDown)
+// });
 
 //ARROW - NOT WORKING WITH DYNAMIC RENDERING
 
