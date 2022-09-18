@@ -17,6 +17,7 @@ body{
 .navbar-container{
     display: flex;
     align-items: center;
+    position: sticky;
     color: white;
     padding: 0 50px;
     height: 100%;
@@ -128,10 +129,34 @@ body{
     cursor: pointer;
 }
 
+.thumbs_up:hover{
+  border-radius: 10px;
+  outline:red solid 2px;
+  cursor: pointer;
+}
+
 .thumbs_down{
     border-radius: 10px;
     cursor: pointer;
 }
+
+.thumbs_down:hover{
+  border-radius: 10px;
+  outline:red solid 2px;
+  cursor: pointer;
+}
+
+.thumbsDown{
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.thumbsDown:hover{
+  border-radius: 10px;
+  outline:red solid 2px;
+  cursor: pointer;
+}
+
 .featured-title{
     width: 200px;
 }
@@ -144,15 +169,21 @@ body{
 }
 
 .featured-button{
-    background-color: orange;
-    color: white;
-    padding: 10px 20px;
+  background-color: orange;
+  color: white;
+  padding: 10px 20px;
   border-radius: 10px;
   border: none;
   outline: none;
   font-weight: bold;
   font-family: 'Creepster';
   font-size: 20px;
+}
+
+.featured-button:hover{
+  color: black;
+  transition: .7s;
+  cursor:pointer;
 }
 
 .upcoming-movie-list-title {
@@ -192,6 +223,12 @@ body{
     opacity: 1;
     font-family: 'Creepster';
   }
+
+.movie-list-item-button:hover {
+  color: black;
+  transition: .7s;
+  cursor: pointer;
+}
 
 .movie-list-item:hover .movie-list-item-desc {
     opacity: 1;
@@ -252,6 +289,10 @@ body{
     color: lightgray;
     opacity: 0.5;
     cursor: pointer;
+  }
+
+  .arrow:hover {
+    opacity: 1.0;
   }
 
   .slasher {
